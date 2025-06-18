@@ -64,7 +64,12 @@ getConversationDetails();
             }
           </Container>
           <Box>
-            <Text>{message?.text?.includes('localhost')?'media':message.text}</Text>
+            {/* <Text>{message?.text?.includes('localhost')?'media':message.text}</Text> */}
+            <Text>
+  {message?.text?.includes('onrender.com') || message?.text?.includes('localhost')
+    ? 'media'
+    : message.text}
+</Text>
           </Box>
          </Box>
      </Component>
