@@ -34,6 +34,7 @@ const Conversations = ({text}) => {
       if (Array.isArray(response)) {
         const filteredData = response.filter(user=>user.name.toLowerCase().includes(text.toLowerCase()));
         setUsers(filteredData);
+        
       } else {
         setUsers([]); // or handle error
       }
