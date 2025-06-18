@@ -51,53 +51,28 @@ getConversationDetails();
 
  }
   return (
-//      <Component>
-//          <Box onClick={()=>getUser()}>
-//              <Image src={user.picture} alt="dp" />
-//          </Box>
-//          <Box style={{width:'100%'}}>
-//           <Container>
-//             <Typography>{user.name}</Typography>
-//             {
-//               message?.text &&
-//               <TimeStamp>{formatDate(message?.timeStamp)}</TimeStamp>
-//             }
-//           </Container>
-//           <Box>
-//             {/* <Text>{message?.text?.includes('localhost')?'media':message.text}</Text> */}
-//             <Text>
-//   {message?.text?.includes('onrender.com') || message?.text?.includes('localhost')
-//     ? 'media'
-//     : message.text}
-// </Text>
-//           </Box>
-//          </Box>
-//      </Component>
-
-// .jsx
-<Component>
-    <Box onClick={()=>getUser()}>
-        <Image src={user.picture} alt="dp" />
-    </Box>
-    <Box style={{width:'100%'}}>
-      <Container>
-        <Typography
-          style={{ cursor: 'pointer' }}
-          onClick={()=>getUser()}
-        >
-          {user.name}
-        </Typography>
-        {message?.text && <TimeStamp>{formatDate(message?.timeStamp)}</TimeStamp>}
-      </Container>
-      <Box>
-        <Text>
-          {message?.text?.includes('onrender.com') || message?.text?.includes('localhost')
-            ? 'media'
-            : message.text}
-        </Text>
-      </Box>
-    </Box>
-</Component>
+     <Component>
+         <Box onClick={()=>getUser()}>
+             <Image src={user.picture} alt="dp" />
+         </Box>
+         <Box style={{width:'100%'}}>
+          <Container>
+            <Typography>{user.name}</Typography>
+            {
+              message?.text &&
+              <TimeStamp>{formatDate(message?.timeStamp)}</TimeStamp>
+            }
+          </Container>
+          <Box>
+            {/* <Text>{message?.text?.includes('localhost')?'media':message.text}</Text> */}
+            <Text>
+  {message?.text?.includes('onrender.com') || message?.text?.includes('localhost')
+    ? 'media'
+    : message.text}
+</Text>
+          </Box>
+         </Box>
+     </Component>
   )
 }
 
