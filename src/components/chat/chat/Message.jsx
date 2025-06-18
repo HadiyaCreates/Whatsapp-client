@@ -97,82 +97,7 @@ const Message = ({ message }) => {
 
 
 
-// const ImageMessage = ({ message }) => {
-//   if (!message?.text) return null;
 
-//   const lowerText = message.text.toLowerCase();
-//   const fileUrl = message.text;
-
-//   // ✅ PDF block (unchanged, with icon and time to the right)
-//   if (lowerText.endsWith('.pdf') || lowerText.includes('.pdf')) {
-//     return (
-//       <Box sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-//         {/* <a href={fileUrl} target="_blank" rel="noopener noreferrer" aria-label="Open PDF document"> */}
-//         <Box style={{display:'flex'}}> 
-//           <img src={iconPDF} alt="PDF icon" style={{ width:80}} />
-//           <Typography style={{fontSize:14}}>{message.text.split('/').pop()}</Typography>
-//         </Box>
-//         {/* </a> */}
-//         {/* <a href={fileUrl} download target="_blank" rel="noopener noreferrer"> */}
-//         {/* </a> */}
-       
-//           <GetAppIcon
-//           onClick = {(e)=>downloadMedia(e,message.text)}
-//             style={{
-//               marginLeft: 10,
-//               border: '1px solid grey',
-//               borderRadius: '50%',
-//               fontSize: 'small',
-//               cursor: 'pointer'
-//             }}
-//           />
-//         <Time style={{ position: 'absolute', bottom: 0, right: 0 }}>{formatDate(message.createdAt)}</Time>
-       
-//       </Box>
-//     );
-//   }
-
-//   // ✅ Image block — icon left of time, both over image
-//   return (
-//     <Box sx={{ position: 'relative', display: 'inline-block' }}>
-//       <a href={fileUrl} target="_blank" rel="noopener noreferrer">
-//         <img
-//           src={fileUrl}
-//           alt="Sent file"
-//           style={{
-//             maxWidth: 300,
-//             borderRadius: 5,
-//             cursor: 'pointer',
-//             height: '100%',
-//             objectFit: 'cover'
-//           }}
-//         />
-//       </a>
-
-//       {/* Icon + Time overlay, aligned right-bottom */}
-//       <Box
-//         sx={{
-//           position: 'absolute',
-//           bottom: 5,
-//           right: 5,
-//           display: 'flex',
-//           alignItems: 'center',
-//           backgroundColor: 'rgba(0, 0, 0, 0.5)',
-//           borderRadius: 4,
-//           padding: '2px 6px'
-//         }}
-//       >
-//         <a href={fileUrl} download target="_blank" rel="noopener noreferrer">
-//           <GetAppIcon
-//                onClick = {(e)=>downloadMedia(e,message.text)}
-//             sx={{ color: '#fff', fontSize: 14, cursor: 'pointer', marginRight: 1 }}
-//           />
-//         </a>
-//         <Time sx={{ color: '#fff', fontSize: 10, margin: 0 }}>{formatDate(message.createdAt)}</Time>
-//       </Box>
-//     </Box>
-//   );
-// };
 
 // const ImageMessage = ({ message }) => {
 //   if (!message?.text) return null;
@@ -256,35 +181,129 @@ const Message = ({ message }) => {
 //     </Box>
 //   );
 // };
+
+// const ImageMessage = ({ message }) => {
+//   if (!message?.text) return null;
+
+//   const fileUrl = message.text;
+//   const isPDF = fileUrl.toLowerCase().includes('.pdf');
+
+//   if (isPDF) {
+//     return (
+//       <Box
+//         sx={{
+//           display: 'flex',
+//           flexDirection: 'row',
+//           alignItems: 'center',
+//           backgroundColor: '#e1f3fb',
+//           borderRadius: 10,
+//           padding: '5px 10px',
+//           maxWidth: 350,
+//           wordBreak: 'break-word',
+//           justifyContent: 'space-between',
+//           gap: 1,
+//         }}
+//       >
+//         {/* PDF Icon + File Name */}
+//         <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+//           <img src={iconPDF} alt="PDF" style={{ width: 45, marginRight: 10 }} />
+//           <Typography sx={{ fontSize: 13 }}>
+//             {fileUrl.split('/').pop()}
+//           </Typography>
+//         </Box>
+
+//         {/* Download Icon and Time */}
+//         <Box
+//           sx={{
+//             display: 'flex',
+//             flexDirection: 'column',
+//             alignItems: 'center',
+//             gap: '2px',
+//           }}
+//         >
+//           <GetAppIcon
+//             onClick={(e) => downloadMedia(e, message.text)}
+//             sx={{
+//               fontSize: 18,
+//               border: '1px solid grey',
+//               borderRadius: '50%',
+//               padding: '4px',
+//               cursor: 'pointer',
+//             }}
+//           />
+//           <Time>{formatDate(message.createdAt)}</Time>
+//         </Box>
+//       </Box>
+//     );
+//   }
+
+//   // 🖼️ Image Message fallback
+//   return (
+//     <Box sx={{ position: 'relative', display: 'inline-block' }}>
+//       <a href={fileUrl} target="_blank" rel="noopener noreferrer">
+//         <img
+//           src={fileUrl}
+//           alt="Sent file"
+//           style={{
+//             maxWidth: 300,
+//             borderRadius: 5,
+//             cursor: 'pointer',
+//             objectFit: 'cover',
+//           }}
+//         />
+//       </a>
+
+//       <Box
+//         sx={{
+//           position: 'absolute',
+//           bottom: 5,
+//           right: 5,
+//           display: 'flex',
+//           alignItems: 'center',
+//           backgroundColor: 'rgba(0, 0, 0, 0.5)',
+//           borderRadius: 4,
+//           padding: '3px 6px',
+//         }}
+//       >
+//         <GetAppIcon
+//           onClick={(e) => downloadMedia(e, message.text)}
+//           sx={{
+//             color: '#fff',
+//             fontSize: 14,
+//             cursor: 'pointer',
+//             marginRight: 1,
+//           }}
+//         />
+//         <Time sx={{ color: '#fff', fontSize: 10 }}>{formatDate(message.createdAt)}</Time>
+//       </Box>
+//     </Box>
+//   );
+// };
 const ImageMessage = ({ message }) => {
-  if (!message?.text) return null;
 
-  const isPDF = message.text.toLowerCase().endsWith('.pdf');
+    return (
+        <div style={{ position: 'relative' }}>
+            {
+                message?.text?.includes('.pdf') ?
+                    <div style={{ display: 'flex' }}>
+                        <img src={iconPDF} alt="pdf-icon" style={{ width: 80 }} />
+                        <Typography style={{ fontSize: 14 }} >{message.text.split("/").pop()}</Typography>
+                    </div>
+                : 
+                    <img style={{ width: 300, height: '100%', objectFit: 'cover' }} src={message.text} alt={message.text} />
+            }
+            <Time style={{ position: 'absolute', bottom: 0, right: 0 }}>
+                <GetAppIcon 
+                    onClick={(e) => downloadMedia(e, message.text)} 
+                    fontSize='small' 
+                    style={{ marginRight: 10, border: '1px solid grey', borderRadius: '50%' }} 
+                />
+                {formatDate(message.createdAt)}
+            </Time>
+        </div>
+    )
+}
 
-  return (
-    <Box style={{ display: 'flex', alignItems: 'center' }}>
-      <a
-        href={message.text}
-        download
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={isPDF ? "Download PDF" : "Download Image"}
-      >
-        {isPDF ? (
-          <>
-            <img src={iconPDF} alt="pdf" style={{ width: 80 }} />
-            <span>PDF</span>
-          </>
-        ) : (
-          <img src={message.text} alt="file" style={{ maxWidth: 200, borderRadius: 8 }} />
-        )}
-      </a>
-      <span style={{ marginLeft: 8, color: "#888", fontSize: 12 }}>
-        {message.createdAt && new Date(message.createdAt).toLocaleTimeString()}
-      </span>
-    </Box>
-  );
-};
 
 
 const TextMessage = ({message})=>{
